@@ -18,4 +18,9 @@ group.addArgument(
 argv = argparser.parseArgs()
 getAccountStats(argv).then((res) ->
   console.log(JSON.stringify(res))
+).catch((err) ->
+  if err.message == 'Username not found'
+    console.error(err.message)
+  else
+    console.error(err)
 )
