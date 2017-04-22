@@ -23,5 +23,10 @@ getAccountStats = ({username}) ->
       website: data['external_url']
     }
   )
+    .catch((err) ->
+      if err.statusCode == 404 then throw new Error('Username not found')
+
+      throw err
+  )
 
 module.exports = {getAccountStats}
